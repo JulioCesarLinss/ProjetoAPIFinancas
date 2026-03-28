@@ -38,7 +38,7 @@ Este repositório contém o código-fonte completo (Frontend e Backend) do siste
 Abaixo, uma captura de tela da interface do usuário, demonstrando o painel principal com o resumo financeiro, metas e histórico de transações.
 
 <div align="center">
-  <img width="800" alt="Captura de tela" src="https://github.com/user-attachments/assets/26cb1b80-7e5c-4942-a8a1-bc5b23ef185b" />
+  <img width="800" alt="Captura de tela 2025-11-28 213406" src="https://github.com/user-attachments/assets/6d9567bf-7c60-4f89-9106-bed086922bfe" />
 </div>
 
 ---

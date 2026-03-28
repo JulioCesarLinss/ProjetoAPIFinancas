@@ -38,9 +38,9 @@ const Profile = ({ user, onUpdateUser, showAlert }) => {
   return (
     <div className="px-6 md:px-0 pt-10 md:pt-0 pb-24 md:pb-0 max-w-2xl mx-auto md:mx-0">
       <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">Configurações de Perfil</h2>
-      <div className="glass-green p-8 rounded-2xl animate-in fade-in zoom-in-95 duration-500">
+      <div className="bg-[#1E1E1E] p-8 rounded-2xl border border-gray-800 animate-in fade-in zoom-in-95 duration-500">
          <div className="flex flex-col md:flex-row items-center gap-8 mb-8">
-            <div className="relative group"><UserAvatar user={formData} size="w-32 h-32" textSize="text-4xl" /><button onClick={() => fileInputRef.current.click()} className="absolute bottom-0 right-0 bg-cashGreen text-black p-2 rounded-full border-4 border-[rgba(0,200,83,0.2)] hover:bg-green-400 transition-colors"><Camera size={20} /></button><input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept="image/*" /></div>
+            <div className="relative group"><UserAvatar user={formData} size="w-32 h-32" textSize="text-4xl" /><button onClick={() => fileInputRef.current.click()} className="absolute bottom-0 right-0 bg-cashGreen text-black p-2 rounded-full border-4 border-[#1E1E1E] hover:bg-green-400 transition-colors"><Camera size={20} /></button><input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept="image/*" /></div>
             <div className="text-center md:text-left flex-1"><h3 className="text-white font-bold text-xl">{formData.name || "Usuário"}</h3><p className="text-gray-500 mb-4">{formData.email}</p>{formData.avatar && <button type="button" onClick={handleRemovePhoto} className="text-red-400 text-xs font-bold hover:underline flex items-center gap-1 mx-auto md:mx-0 cursor-pointer"><Trash2 size={12} /> Remover foto</button>}</div>
          </div>
          <form className="flex flex-col gap-4" onSubmit={handleSave}>
@@ -57,4 +57,3 @@ const Profile = ({ user, onUpdateUser, showAlert }) => {
 };
 
 export default Profile;
-

@@ -31,9 +31,9 @@ const Planning = ({ goals, reminders, onAddGoal, onDeleteGoal, onDepositToGoal, 
       <div className="px-6 md:px-0 pt-8 md:pt-0 pb-24 md:pb-0 h-full overflow-y-auto relative">
          <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
              <h2 className="text-2xl md:text-3xl font-bold text-white">Planejamento</h2>
-             <div className="flex bg-[#1E1E1E] p-1 rounded-xl">
-                 <button onClick={() => setActiveTab('goals')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'goals' ? 'bg-cashGreen text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}>Metas</button>
-                 <button onClick={() => setActiveTab('reminders')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'reminders' ? 'bg-cashGreen text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}>Contas a Pagar</button>
+             <div className="flex glass-green p-1 rounded-xl">
+                 <button onClick={() => setActiveTab('goals')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'goals' ? 'btn-liquid' : 'text-gray-400 hover:text-white'}`}>Metas</button>
+                 <button onClick={() => setActiveTab('reminders')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'reminders' ? 'btn-liquid' : 'text-gray-400 hover:text-white'}`}>Contas a Pagar</button>
              </div>
              {activeTab === 'goals' ? (
                  <PrimaryButton label={isCreatingGoal ? "Cancelar" : "Nova Meta"} icon={isCreatingGoal ? <X size={18}/> : <Plus size={18}/>} onClick={() => setIsCreatingGoal(!isCreatingGoal)} fullWidth={false}/>
@@ -43,7 +43,7 @@ const Planning = ({ goals, reminders, onAddGoal, onDeleteGoal, onDepositToGoal, 
          </div>
 
          <PortalModal isOpen={depositModal.isOpen}>
-            <div className="bg-[#1E1E1E] p-6 rounded-2xl w-full max-w-sm border border-gray-700">
+            <div className="glass-green p-6 rounded-2xl w-full max-w-sm">
                 <h3 className="text-white font-bold text-lg mb-4">Guardar dinheiro</h3>
                 <InputGroup placeholder="Valor (ex: 50.00)" type="number" darkTheme value={depositValue} onChange={(e) => setDepositValue(e.target.value)} />
                 <div className="flex gap-3 mt-4">
@@ -54,7 +54,7 @@ const Planning = ({ goals, reminders, onAddGoal, onDeleteGoal, onDepositToGoal, 
          </PortalModal>
 
          <PortalModal isOpen={editModal.isOpen && editModal.goal}>
-            <div className="bg-[#1E1E1E] p-6 rounded-2xl w-full max-w-sm border border-gray-700">
+            <div className="glass-green p-6 rounded-2xl w-full max-w-sm">
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="text-white font-bold text-lg">Editar Meta</h3>
                     <button onClick={() => setEditModal({ isOpen: false, goal: null })} className="text-gray-400 hover:text-white"><X size={20} /></button>
@@ -71,7 +71,7 @@ const Planning = ({ goals, reminders, onAddGoal, onDeleteGoal, onDepositToGoal, 
          {activeTab === 'goals' && (
              <div className="animate-in fade-in slide-in-from-bottom-4">
                  {isCreatingGoal && (
-                    <div className="bg-[#1E1E1E] p-6 rounded-2xl border border-gray-800 mb-8 max-w-2xl animate-in slide-in-from-top-8 fade-in"><h3 className="text-white font-bold mb-4">Definir nova meta</h3><div className="grid grid-cols-1 md:grid-cols-2 gap-4"><div className="md:col-span-2"><InputGroup label="Nome da Meta" placeholder="Ex: Computador Novo" darkTheme value={newGoal.description} onChange={e => setNewGoal({...newGoal, description: e.target.value})} /></div><InputGroup label="Valor Total (R$)" placeholder="Ex: 5000" type="number" darkTheme value={newGoal.total} onChange={e => setNewGoal({...newGoal, total: e.target.value})} /><InputGroup label="Valor Inicial (R$)" placeholder="Ex: 0" type="number" darkTheme value={newGoal.current} onChange={e => setNewGoal({...newGoal, current: e.target.value})} /></div><div className="mt-4 flex justify-end"><div className="w-full md:w-auto"><PrimaryButton label="Salvar Meta" onClick={handleCreateGoal} fullWidth={false} /></div></div></div>
+                    <div className="glass-green p-6 rounded-2xl mb-8 max-w-2xl animate-in slide-in-from-top-8 fade-in"><h3 className="text-white font-bold mb-4">Definir nova meta</h3><div className="grid grid-cols-1 md:grid-cols-2 gap-4"><div className="md:col-span-2"><InputGroup label="Nome da Meta" placeholder="Ex: Computador Novo" darkTheme value={newGoal.description} onChange={e => setNewGoal({...newGoal, description: e.target.value})} /></div><InputGroup label="Valor Total (R$)" placeholder="Ex: 5000" type="number" darkTheme value={newGoal.total} onChange={e => setNewGoal({...newGoal, total: e.target.value})} /><InputGroup label="Valor Inicial (R$)" placeholder="Ex: 0" type="number" darkTheme value={newGoal.current} onChange={e => setNewGoal({...newGoal, current: e.target.value})} /></div><div className="mt-4 flex justify-end"><div className="w-full md:w-auto"><PrimaryButton label="Salvar Meta" onClick={handleCreateGoal} fullWidth={false} /></div></div></div>
                  )}
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {goals.length === 0 && !isCreatingGoal && <div className="col-span-full text-center py-20 text-gray-600 border-2 border-dashed border-gray-800 rounded-2xl animate-in fade-in">Você ainda não criou nenhuma meta.</div>}
@@ -80,7 +80,7 @@ const Planning = ({ goals, reminders, onAddGoal, onDeleteGoal, onDepositToGoal, 
                        const total = parseFloat(goal.valorMeta || 1);
                        const percent = Math.min((current / total) * 100, 100);
                        return (
-                          <div key={goal.id} className="bg-[#1E1E1E] p-5 rounded-2xl border border-gray-800 relative group hover:border-cashGreen/50 transition-all hover:scale-[1.02] animate-in slide-in-from-bottom-4 fade-in" style={{ animationDelay: `${idx * 100}ms` }}>
+                          <div key={goal.id} className="glass-green p-5 rounded-2xl relative group hover:border-cashGreen/50 transition-all hover:scale-[1.02] animate-in slide-in-from-bottom-4 fade-in" style={{ animationDelay: `${idx * 100}ms` }}>
                              <div className="flex justify-between mb-2 items-start"><span className="text-white font-bold text-lg">{goal.descricao}</span><div className="flex gap-2"><button onClick={() => setDepositModal({ isOpen: true, goalId: goal.id })} className="text-cashGreen bg-cashGreen/10 p-2 rounded-lg hover:bg-cashGreen hover:text-black transition-colors" title="Guardar dinheiro"><PiggyBank size={18}/></button><button onClick={() => setEditModal({ isOpen: true, goal: goal })} className="text-gray-400 bg-gray-800 p-2 rounded-lg hover:bg-gray-700 hover:text-white transition-colors" title="Editar Meta"><Edit2 size={18} /></button></div></div>
                              <div className="flex justify-between mb-3 text-sm text-gray-400 font-medium"><span>{percent.toFixed(0)}%</span><span>R$ {current} / R$ {total}</span></div>
                              <div className="w-full h-3 bg-gray-800 rounded-full overflow-hidden"><div className="h-full bg-cashGreen transition-all duration-1000 ease-out" style={{ width: `${percent}%` }}></div></div>
@@ -94,7 +94,7 @@ const Planning = ({ goals, reminders, onAddGoal, onDeleteGoal, onDepositToGoal, 
          {activeTab === 'reminders' && (
              <div className="animate-in fade-in slide-in-from-bottom-4">
                  {isCreatingReminder && (
-                    <div className="bg-[#1E1E1E] p-6 rounded-2xl border border-gray-800 mb-8 max-w-2xl animate-in slide-in-from-top-8 fade-in">
+                    <div className="glass-green p-6 rounded-2xl mb-8 max-w-2xl animate-in slide-in-from-top-8 fade-in">
                         <h3 className="text-white font-bold mb-4">Novo Lembrete de Conta</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="md:col-span-2"><InputGroup label="Descrição da Conta" placeholder="Ex: Conta de Luz, Internet..." darkTheme value={newReminder.descricao} onChange={e => setNewReminder({...newReminder, descricao: e.target.value})} /></div>
@@ -112,7 +112,7 @@ const Planning = ({ goals, reminders, onAddGoal, onDeleteGoal, onDepositToGoal, 
                        const isLate = dueDate < today.setHours(0,0,0,0);
                        const val = rem.valor ? parseFloat(rem.valor).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}) : 'R$ --';
                        return (
-                          <div key={rem.id} className={`flex justify-between items-center p-4 rounded-xl border transition-all hover:scale-[1.01] animate-in slide-in-from-bottom-4 fade-in ${isLate ? 'bg-red-500/10 border-red-500/50' : 'bg-[#1E1E1E] border-gray-800'}`} style={{ animationDelay: `${idx * 50}ms` }}>
+                          <div key={rem.id} className={`flex justify-between items-center p-4 rounded-xl border transition-all hover:scale-[1.01] animate-in slide-in-from-bottom-4 fade-in ${isLate ? 'bg-red-500/10 border-red-500/50' : 'glass-green'}`} style={{ animationDelay: `${idx * 50}ms` }}>
                              <div className="flex items-center gap-4">
                                 <div className={`w-12 h-12 rounded-full flex items-center justify-center ${isLate ? 'bg-red-500 text-white' : 'bg-gray-800 text-gray-400'}`}><Calendar size={20} /></div>
                                 <div><p className="text-white text-sm font-bold">{rem.descricao}</p><p className={`${isLate ? 'text-red-400 font-bold' : 'text-gray-500'} text-xs`}>Vence em: {formatDate(rem.dataVencimento)} {isLate && "(Atrasado!)"}</p></div>
